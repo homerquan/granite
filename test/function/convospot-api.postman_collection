@@ -1,0 +1,34 @@
+{
+	"variables": [],
+	"info": {
+		"name": "convospot-api",
+		"_postman_id": "a8af3453-a3e6-1bb9-8009-47c9aa3c1001",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/v2/conversations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Status code name has string\"] = responseCode.name.has(\"Created\");"
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:3000/v2/conversations",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"welcome\":\"abc\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

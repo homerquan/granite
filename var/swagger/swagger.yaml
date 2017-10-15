@@ -1,0 +1,139 @@
+swagger: "2.0"
+info:
+  version: "2.0.1"
+  title: API for convospot.io
+  description: The api for intelligent live communication and knowledge management. 
+  termsOfService: http://doc.convospot.io/legal/terms-of-service
+  contact:
+    name: convospot api team
+    email: support@convospot.io
+    url: http://www.convospot.io
+  
+# during dev, should point to your local machine
+# api.convospot.io
+# host: api.convospot.io
+host: localhost:3000
+# basePath prefixes all resource paths 
+basePath: /v2
+# Security for access control
+# security:
+#  - internalApiKey: [1s]
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /user:
+    get:
+      description: Returns user to the caller, filter sesentive info such as password
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/user"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /me:
+    x-swagger-pipe: swagger_raw
+  /conversation:
+    get:
+      summary: Get some conversations 
+      description: Get some conversations
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/conversation"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      
+  # /knowledge:
+  #   x-swagger-pipe: swagger_raw
+  # /message: 
+  #   x-swagger-pipe: swagger_raw
+  # /action: 
+  #   x-swagger-pipe: swagger_raw
+  # /bot:
+  #   x-swagger-pipe: swagger_raw
+  # /bot/{id}/messages:
+  #   x-swagger-pipe: swagger_raw   
+  # /bot/{id}/plugins:
+  #   x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  user:
+    type: object
+    required:
+      - name
+      - email
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+  conversation:
+    type: object
+    properties:
+      id:
+        type: string
+      caller : 
+        $ref: "#/definitions/caller"
+      bot: 
+        $ref: "#/definitions/bot"
+      context:
+        type: object
+      welcome:
+        type: string
+      mode: 
+        type: string
+      status:
+        type: string
+  caller:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+  bot:
+    type: object
+    properties:
+      id:
+        type: string
+      generation:
+        type: string
+      knowledge_base:
+        type: string
+      extension:
+         type: array
+         items:
+           type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
