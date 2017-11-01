@@ -8,7 +8,7 @@
 var featureToggles = require('feature-toggles');
 
 var flags = {
-	widgetAuthCheckHost: true
+	widgetAuthCheckHost: false
 };
 
 featureToggles.load(flags);
