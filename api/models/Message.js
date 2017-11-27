@@ -24,13 +24,13 @@ module.exports = {
         acknowledged: {
             type: 'boolean'
         },
-        _conversation: {
+        conversation: {
             model: 'Conversation'
         },
-        _owner: {
+        owner: {
             model: 'User'
         },
-        _client: {
+        client: {
             model: 'Client'
         }
     },
@@ -38,7 +38,7 @@ module.exports = {
         values.modelName = 'message';
         //Using dedicated socket servers for widget and console
         SenecaService.act('convospot-socket', 'create_message', values);
-        SenecaService.act('convospot-console', 'create_message', values);
+        //SenecaService.act('convospot-console', 'create_message', values);
         
         //TODO handle error
         if (values.source === 'widget') {

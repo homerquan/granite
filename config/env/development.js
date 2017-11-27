@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-  disableAuth: false,
+  disableAuth: true,
   seeds: {
   	disable: false
   },

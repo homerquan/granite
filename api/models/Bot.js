@@ -17,23 +17,38 @@ module.exports = {
         welcome: {
             type: 'string'
         },
-        mode: {
-            type: 'string'
-        },
         token: {
             type: 'string',
             defaultsTo: () => {
                 return TokenService.gen();
             }
         },
-        _owner: {
+        owner: {
             model: 'User'
         },
-        _client: {
+        client: {
             model: 'Client'
         }
     },
 
     beforeUpdate: (values, next) => next(),
-    beforeCreate: (values, next) => next()
+    beforeCreate: (values, next) => next(),
+    afterCreate: (values, next) => {
+        let req = {
+            message:'',
+            typeCode: 201,
+            type: 'create_bot',
+            data: JSON.stringify({
+                    id: values.id,
+                    client: values.client
+            })
+        };
+        GrpcService.ask(req,function(err,resp){
+            if (err)
+                sails.log.error('error:', err);
+            else 
+                sails.log.debug('response:', resp);
+        });
+        next();
+    }
 };

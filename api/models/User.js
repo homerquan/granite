@@ -38,15 +38,10 @@ module.exports = {
       defaultsTo: ''
     },
 
-    photo: {
+    avator: {
       type: 'string',
       defaultsTo: '',
       url: true
-    },
-
-    socialProfiles: {
-      type: 'object',
-      defaultsTo: {}
     },
 
     toJSON() {

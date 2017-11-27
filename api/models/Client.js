@@ -6,7 +6,12 @@
  */
 
 module.exports = {
-  attributes: {
-    // Fill your attributes here
-  }
+	attributes: {
+		name: {
+			type: 'string'
+		},
+		owner: {
+            model: 'User'
+        },
+	}
 };

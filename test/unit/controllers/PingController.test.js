@@ -10,9 +10,8 @@ describe('controllers:PingController', () => {
     }, (error, res, body) => {
       if (error) return done(error);
 
-      assert.equal(res.statusCode, 200);
-      assert.equal(body.message, 'HTTP server is working');
-
+      assert.equal(res.statusCode, 200,  'HTTP server is working');
+      
       done();
     });
   });

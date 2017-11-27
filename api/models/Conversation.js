@@ -7,17 +7,13 @@
 
 module.exports = {
     attributes: {
-        status: {
-            type: 'string',
-            enum: ['online', 'off']
-        },
         context: {
             type: 'json'
         },
         mode: {
             type: 'string',
             enum: ['auto', 'semi', 'manual'],
-            defaultsTo: 'auto'
+            defaultsTo: 'semi'
         },
         token: {
             type: 'string',
@@ -25,18 +21,67 @@ module.exports = {
                 return TokenService.gen();
             }
         },
-        _bot: {
-            model: 'Bot'
+        visitor: {
+            model: 'Visitor'
         },
-        _owner: {
+        user: {
             model: 'User'
         },
-        _client: {
+        bot: {
+            model: 'Bot'
+        },
+        client: {
             model: 'Client'
         }
     },
+    beforeCreate: (values, next) => {
+        // using bot client as entity client
+        if(values.bot && !values.client) {
+            Bot.findOne({id:values.bot},function(err,bot){
+                values.client=bot.client;
+                next();
+            })
+        } else {
+            next();
+        }
+    },
     afterCreate: (values, next) => {
-        SenecaService.act('convospot-console', 'create_conversation', values);
+        //SenecaService.act('convospot-console', 'create_conversation', values);
+        let req = {
+            message: '',
+            typeCode: 206,
+            type: 'create_conversation',
+            data: JSON.stringify({
+                id: values.id,
+                bot: values.bot,
+                client: values.client
+            })
+        };
+        GrpcService.ask(req, function(err, resp) {
+            if (err)
+                sails.log.error('error:', err);
+            else {
+                sails.log.debug('response:', resp);
+                let req = {
+                    message: '',
+                    typeCode: 207,
+                    type: 'join_conversation',
+                    data: JSON.stringify({
+                        conversation: values.id,
+                        visitor: values.visitor,
+                        bot: values.bot,
+                        client: values.client
+                    })
+                }
+                GrpcService.ask(req, function(err, resp) {
+                    if (err)
+                        sails.log.error('error:', err);
+                    else
+                        sails.log.debug('response:', resp);
+                });
+
+            }
+        });
         next();
     }
 };
