@@ -35,19 +35,19 @@ module.exports.seeds = {
         }],
         overwrite: true
     },
-    visitor: {
+    conversation: {
         data: [{
-            "id":"a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c",
-            "cid":"d9909416-6582-4849-aebd-5b2ca4983e56",
+            "id":"5b23830d-b168-4ae6-93e2-c0e1ffafdc80",
+            "visitor":"a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c",
             "bot":"5f9efca2-c423-49d1-84f8-72981a07d430",
             "client":"ddcd39c9-dcbc-4a26-bcf7-525d77c12d54"
         }],
         overwrite: true
     },
-    conversation: {
+    visitor: {
         data: [{
-            "id":"5b23830d-b168-4ae6-93e2-c0e1ffafdc80",
-            "visitor":"a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c",
+            "id":"a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c",
+            "cid":"d9909416-6582-4849-aebd-5b2ca4983e56",
             "bot":"5f9efca2-c423-49d1-84f8-72981a07d430",
             "client":"ddcd39c9-dcbc-4a26-bcf7-525d77c12d54"
         }],
