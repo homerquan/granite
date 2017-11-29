@@ -9,6 +9,13 @@ npm install
 npm start
 ```
 
+## Test
+
+In redis 
+
+PUBLISH a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c 
+
+{"text":"hello homer","source":"user","conversation":"5b23830d-b168-4ae6-93e2-c0e1ffafdc80", "visitor":"a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c","helper":"230c1b80-95d7-417f-a926-62c7e1d99929"}
 
 ## Dev mode 
 

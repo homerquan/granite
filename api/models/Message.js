@@ -21,17 +21,31 @@ module.exports = {
         source: {
             type: 'string'
         },
-        acknowledged: {
-            type: 'boolean'
+        sourceId: {
+            type: 'string'
+        },
+        destination: {
+            type: 'string'
+        },
+        destinationId: {
+            type: 'string'
         },
         conversation: {
             model: 'Conversation'
         },
-        owner: {
-            model: 'User'
-        },
         client: {
             model: 'Client'
+        }
+    },
+    beforeCreate: (values, next) => {
+        // using conversation client as entity client
+        if(values.conversation && !values.client) {
+            Conversation.findOne({id:values.conversation},function(err,convo){
+                values.client=convo.client;
+                next();
+            })
+        } else {
+            next();
         }
     },
     afterCreate: (values, next) => {
