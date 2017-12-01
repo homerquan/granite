@@ -138,7 +138,7 @@ const _onJwtStrategyAuth = (req, payload, next) => {
             })
             .then(convo => {
                 if (!convo) return next(null, null, sails.config.errors.JWT_NOT_VALID);
-                req.body._conversation = convo.id; //overwrite to verified conversation
+                req.body.conversation = convo.id; //overwrite to verified conversation
                 req.body.source = 'widget';
                 return next(null, convo, {});
             })
