@@ -24,9 +24,6 @@ module.exports = {
         visitor: {
             model: 'Visitor'
         },
-        user: {
-            model: 'User'
-        },
         bot: {
             model: 'Bot'
         },
