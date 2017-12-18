@@ -1,6 +1,7 @@
 const _ = require('lodash');
 
 var services = _.union(
+	require('./console-api'),
 	require('./socket'),
 	require('./engine')
 );
