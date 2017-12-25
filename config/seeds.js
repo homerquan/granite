@@ -54,7 +54,25 @@ module.exports.seeds = {
         overwrite: true
     },
     message :{
-        data: [],
+        data: [{
+            "text":"test 1",
+            "bot":"5f9efca2-c423-49d1-84f8-72981a07d430",
+            "conversation":"5b23830d-b168-4ae6-93e2-c0e1ffafdc80",
+            "client":"ddcd39c9-dcbc-4a26-bcf7-525d77c12d54",
+            "source":"visitor",
+            "sourceId":"a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c",
+            "destination":"helper",
+            "destinationId":""
+        },{
+            "text":"test 2",
+            "bot":"5f9efca2-c423-49d1-84f8-72981a07d430",
+            "conversation":"5b23830d-b168-4ae6-93e2-c0e1ffafdc80",
+            "client":"ddcd39c9-dcbc-4a26-bcf7-525d77c12d54",
+            "source":"visitor",
+            "sourceId":"a234d4ce-84c8-4e74-9d3b-a0d3f5ce3d6c",
+            "destination":"helper",
+            "destinationId":""
+        }],
         overwrite: true
     }
 }
