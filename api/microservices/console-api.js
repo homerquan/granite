@@ -40,7 +40,7 @@ module.exports = [{
 			.catch(cb);
 	}
 },{
-	pattern: 'role:convospot-api,cmd:add_message',
+	pattern: 'role:convospot-api,cmd:create_message',
 	action: (msg, cb) => {
 		Message
 			.create({

@@ -47,8 +47,12 @@ module.exports = {
             next();
         }
     },
+    afterUpdate: (values, next) => {
+        SenecaService.act('convospot-console-api', 'update_conversation', values);
+        next();
+    },
     afterCreate: (values, next) => {
-        //SenecaService.act('convospot-console', 'create_conversation', values);
+        SenecaService.act('convospot-console-api', 'create_conversation', values);
         let req = {
             message: '',
             typeCode: 206,

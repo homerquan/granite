@@ -19,7 +19,7 @@ module.exports = {
             },{
                 type: 'amqp',
                 url: config.amqpConn,
-                pin: 'role:convospot-console'
+                pin: 'role:convospot-console-api'
             }]
         }
     }
