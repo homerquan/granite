@@ -6,7 +6,8 @@ module.exports = [{
 		Conversation
 			.find({
 				client: msg.client,
-				bot: msg.bot
+				bot: msg.bot,
+				status: msg.status
 			})
 			.then(items => {
 				cb(null, items);
