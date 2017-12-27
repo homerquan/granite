@@ -5,6 +5,19 @@ module.exports = [{
 	action: (msg, cb) => {
 		Conversation
 			.find({
+				client: msg.client,
+				bot: msg.bot
+			})
+			.then(items => {
+				cb(null, items);
+			})
+			.catch(cb);
+	}
+},{
+	pattern: 'role:convospot-api,cmd:list_bots',
+	action: (msg, cb) => {
+		Bot
+			.find({
 				client: msg.client
 			})
 			.then(items => {

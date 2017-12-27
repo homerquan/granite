@@ -77,12 +77,13 @@
   },
   "scripts": {
     "clean": "rm -rf ./.tmp",
-    "debug": "node debug app.js",
+    "debug": "babel-node debug app.js",
+    "inspect": "babel-node --inspect app.js",
     "docs": "esdoc -c esdoc.json",
     "edit": "swagger_swagger_fileName=var/swagger/swagger.yaml swagger project edit",
     "prestart": "if [ ! -d node_modules ]; then npm install; fi",
     "dev": "BABEL_DISABLE_CACHE=1 babel-node app.js",
-    "start": "node app.js",
+    "start": "babel-node app.js",
     "test": "istanbul cover _mocha",
     "gen-api-test": "swagger_swagger_fileName=var/swagger/swagger.yaml swagger project generate-test"
   }

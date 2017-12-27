@@ -18,9 +18,16 @@ module.exports = [{
 }, {
 	pattern: 'role:convospot-api,cmd:update_conversation_status',
 	action: (msg, cb) => {
-		//console.log(msg);
-		cb(null, {
-			data: 'ok'
-		});
+		Conversation
+			.update({
+				id: msg.id
+			},{
+				status: msg.status
+			}).then(convo => {
+				cb(null, {
+					data: convo[0]
+				});
+			})
+			.catch(cb);
 	}
 }];

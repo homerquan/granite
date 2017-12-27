@@ -21,6 +21,11 @@ module.exports = {
                 return TokenService.gen();
             }
         },
+        status: {
+            type: 'string',
+            enum: ['online', 'off'],
+            defaultsTo: 'off'
+        },
         visitor: {
             model: 'Visitor'
         },
