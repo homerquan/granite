@@ -45,8 +45,9 @@ module.exports = [{
 		Message
 			.create({
 				text: msg.text,
-				source: 'helper',
-				conversation: msg.conversation
+				source: msg.source,
+				conversation: msg.conversation,
+				type : msg.type
 			})
 			.then(items => {
 				cb(null, items);

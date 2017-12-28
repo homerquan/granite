@@ -41,13 +41,16 @@ module.exports = {
         }
     },
     beforeCreate: (values, next) => {
+        // TODO: improve it after mvp
         // using conversation client as entity client
-        if (values.conversation && !values.client) {
+        if (values && values.conversation && !values.client) {
             Conversation.findOne({
                 id: values.conversation
             }, function(err, convo) {
                 values.bot = convo.bot;
                 values.client = convo.client;
+                values.destination = "visitor";
+                values.destinationId = convo.visitor;
                 next();
             })
         } else {
