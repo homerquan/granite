@@ -8,39 +8,39 @@
 module.exports = {
   attributes: {
     username: {
-      type: 'string',
+      type: "string",
       required: true,
       unique: true,
       alphanumericdashed: true
     },
 
     password: {
-      type: 'string'
+      type: "string"
     },
 
     roles: {
-      type: 'array'
+      type: "array"
     },
 
     email: {
-      type: 'email',
+      type: "email",
       required: true,
       unique: true
     },
 
     firstName: {
-      type: 'string',
-      defaultsTo: ''
+      type: "string",
+      defaultsTo: ""
     },
 
     lastName: {
-      type: 'string',
-      defaultsTo: ''
+      type: "string",
+      defaultsTo: ""
     },
 
     avator: {
-      type: 'string',
-      defaultsTo: '',
+      type: "string",
+      defaultsTo: "",
       url: true
     },
 
@@ -53,10 +53,11 @@ module.exports = {
   },
 
   beforeUpdate(values, next) {
-    if (false === values.hasOwnProperty('password')) return next();
+    if (false === values.hasOwnProperty("password")) return next();
     if (/^\$2[aby]\$[0-9]{2}\$.{53}$/.test(values.password)) return next();
 
-    return HashService.bcrypt.hash(values.password)
+    return HashService.bcrypt
+      .hash(values.password)
       .then(hash => {
         values.password = hash;
         next();
@@ -65,9 +66,10 @@ module.exports = {
   },
 
   beforeCreate(values, next) {
-    if (false === values.hasOwnProperty('password')) return next();
+    if (false === values.hasOwnProperty("password")) return next();
 
-    return HashService.bcrypt.hash(values.password)
+    return HashService.bcrypt
+      .hash(values.password)
       .then(hash => {
         values.password = hash;
         next();

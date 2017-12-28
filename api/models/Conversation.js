@@ -8,55 +8,69 @@
 module.exports = {
     attributes: {
         context: {
-            type: 'json'
+            type: "json"
         },
         mode: {
-            type: 'string',
-            enum: ['auto', 'semi', 'manual'],
-            defaultsTo: 'semi'
+            type: "string",
+            enum: ["auto", "semi", "manual"],
+            defaultsTo: "semi"
         },
         token: {
-            type: 'string',
+            type: "string",
             defaultsTo: () => {
                 return TokenService.gen();
             }
         },
+        intentions: {
+            type: "array"
+        },
+        actions: {
+            type: "array"
+        },
         status: {
-            type: 'string',
-            enum: ['online', 'off'],
-            defaultsTo: 'off'
+            type: "string",
+            enum: ["online", "off"],
+            defaultsTo: "off"
         },
         visitor: {
-            model: 'Visitor'
+            model: "Visitor"
         },
         bot: {
-            model: 'Bot'
+            model: "Bot"
         },
         client: {
-            model: 'Client'
+            model: "Client"
         }
     },
     beforeCreate: (values, next) => {
         // using bot client as entity client
-        if(values.bot && !values.client) {
-            Bot.findOne({id:values.bot},function(err,bot){
-                values.client=bot.client;
+        if (values.bot && !values.client) {
+            Bot.findOne({ id: values.bot }, function(err, bot) {
+                values.client = bot.client;
                 next();
-            })
+            });
         } else {
             next();
         }
     },
     afterUpdate: (values, next) => {
-        SenecaService.act('convospot-console-api', 'update_conversation', values);
+        SenecaService.act(
+            "convospot-console-api",
+            "update_conversation",
+            values
+        );
         next();
     },
     afterCreate: (values, next) => {
-        SenecaService.act('convospot-console-api', 'create_conversation', values);
+        SenecaService.act(
+            "convospot-console-api",
+            "create_conversation",
+            values
+        );
         let req = {
-            message: '',
+            message: "",
             typeCode: 206,
-            type: 'create_conversation',
+            type: "create_conversation",
             data: JSON.stringify({
                 id: values.id,
                 bot: values.bot,
@@ -64,28 +78,24 @@ module.exports = {
             })
         };
         GrpcService.ask(req, function(err, resp) {
-            if (err)
-                sails.log.error('error:', err);
+            if (err) sails.log.error("error:", err);
             else {
-                sails.log.debug('response:', resp);
+                sails.log.debug("response:", resp);
                 let req = {
-                    message: '',
+                    message: "",
                     typeCode: 207,
-                    type: 'join_conversation',
+                    type: "join_conversation",
                     data: JSON.stringify({
                         conversation: values.id,
                         visitor: values.visitor,
                         bot: values.bot,
                         client: values.client
                     })
-                }
+                };
                 GrpcService.ask(req, function(err, resp) {
-                    if (err)
-                        sails.log.error('error:', err);
-                    else
-                        sails.log.debug('response:', resp);
+                    if (err) sails.log.error("error:", err);
+                    else sails.log.debug("response:", resp);
                 });
-
             }
         });
         next();
