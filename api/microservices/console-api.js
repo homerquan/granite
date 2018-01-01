@@ -54,4 +54,18 @@ module.exports = [{
 			})
 			.catch(cb);
 	}
+},{
+	pattern: 'role:convospot-api,cmd:create_bot',
+	action: (msg, cb) => {
+		Bot
+			.create({
+				client: msg.client,
+				name: msg.name,
+				host: msg.url
+			})
+			.then(items => {
+				cb(null, items);
+			})
+			.catch(cb);
+	}
 }];
