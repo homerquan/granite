@@ -6,31 +6,28 @@
  * @Author: homer
  * @Email: homer@convospot.io
  * @Date:   2017-11-12 11:19:45
- * @Last Modified by:   homer
- * @Last Modified time: 2017-11-12 16:44:28
+ * @Last Modified by:   Homer
+ * @Last Modified time: 2018-01-03 23:30:50
  */
 
 const grpc = require('grpc');
 const config = require('../../config/services/grpc');
-const messages = require('../grpc/client/conversation_pb');
-const services = require('../grpc/client/conversation_grpc_pb');
+const messages = require('../grpc/engine/input_pb');
+const services = require('../grpc/engine/input_grpc_pb');
+const grpcExectuter = require ('../grpc/executer');
 
 // server
-const engineOutputService = grpc.load(__dirname + '/../grpc/server/outputs.proto').outputs
+const engineOutputService = grpc.load(__dirname + '/../grpc/engine/output.proto').output
 
 // client
-const client = new services.ConversationClient(config.services.grpc.conn, grpc.credentials.createInsecure());
+const client = new services.CommandsClient(config.services.grpc.conn, grpc.credentials.createInsecure());
 
-function getResponse(request) {
-  const response = {
-  	
-  }
-  console.log('test ok');
-  return response;
+function getResponse(request,cb) {
+   grpcExectuter(request,cb);
 }
 
-function ask(call, callback) {
-  callback(null, getResponse(call.request));
+function ask(call, cb) {
+  getResponse(call.request, cb);
 }
 
 function getServer() {
