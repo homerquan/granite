@@ -78,7 +78,7 @@
   "scripts": {
     "clean": "rm -rf ./.tmp",
     "debug": "babel-node debug app.js",
-    "inspect": "babel-node --inspect app.js",
+    "inspect": "babel-node --inspect-brk app.js",
     "docs": "esdoc -c esdoc.json",
     "edit": "swagger_swagger_fileName=var/swagger/swagger.yaml swagger project edit",
     "prestart": "if [ ! -d node_modules ]; then npm install; fi",

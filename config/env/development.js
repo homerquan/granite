@@ -11,6 +11,10 @@ module.exports = {
   	disable: false
   },
   port: 8001,
+  grpc: {
+    server: '0.0.0.0:8901',
+    client: ''
+  },
   log: {
     level: 'verbose'
   },
