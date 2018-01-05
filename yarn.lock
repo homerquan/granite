@@ -4915,15 +4915,6 @@ sails-seed-fix@^0.5.1:
     lodash "^3.7.0"
     semver "^4.3.3"
 
-sails-seed@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/sails-seed/-/sails-seed-0.5.0.tgz#7f34784324822c6d182073987a799523e01f271e"
-  dependencies:
-    async "^0.9.2"
-    extend "^2.0.0"
-    lodash "^3.7.0"
-    semver "^4.3.3"
-
 sails-service-cipher@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/sails-service-cipher/-/sails-service-cipher-3.2.1.tgz#6fcf81cd90ea97a83db2947a533149df0904185a"
