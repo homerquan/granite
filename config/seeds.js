@@ -74,5 +74,13 @@ module.exports.seeds = {
             "destinationId":""
         }],
         overwrite: true
+    },
+    knowledge :{
+        data: [{
+            "raw":"convospot is real-time engagement driven by augmented intelligence\n",
+            "bot":"5f9efca2-c423-49d1-84f8-72981a07d430",
+            "client":"ddcd39c9-dcbc-4a26-bcf7-525d77c12d54"
+        }],
+        overwrite: true
     }
 }

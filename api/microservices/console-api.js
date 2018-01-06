@@ -68,4 +68,32 @@ module.exports = [{
 			})
 			.catch(cb);
 	}
+},{
+	pattern: 'role:convospot-api,cmd:get_knowledge',
+	action: (msg, cb) => {
+		Knowledge
+			.findOne({
+				client: msg.client,
+				bot: msg.bot
+			})
+			.then(item => {
+				cb(null, item);
+			})
+			.catch(cb);
+	}
+},{
+	pattern: 'role:convospot-api,cmd:update_knowledge',
+	action: (msg, cb) => {
+		Knowledge
+			.update({
+				client: msg.client,
+				bot: msg.bot
+			},{
+				raw: msg.raw
+			})
+			.then(items => {
+				cb(null, items);
+			})
+			.catch(cb);
+	}
 }];
