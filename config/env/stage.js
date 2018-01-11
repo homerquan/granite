@@ -8,7 +8,7 @@
 module.exports = {
   disableAuth: true,
   seeds: {
-  	disable: false
+  	disable: true
   },
   port: 8101,
   grpc: {
