@@ -32,6 +32,14 @@ module.exports.seeds = {
             "welcome": "hello convospot",
             "owner": "c10e59d7-3b41-45fe-ac45-57f685419be6",
             "client": "ddcd39c9-dcbc-4a26-bcf7-525d77c12d54"
+        },{
+            "id":"e66276cc-d905-4bdc-96b9-80764269cfdf",
+            "token":"pPjXAUtOw1xwMV4J",
+            "name": "demo bot",
+            "host": "localhost",
+            "welcome": "hello convospot",
+            "owner": "ddcd39c9-dcbc-4a26-bcf7-525d77c12d55",
+            "client": "ddcd39c9-dcbc-4a26-bcf7-525d77c12d55"
         }],
         overwrite: true
     },
