@@ -1,5 +1,6 @@
 "use strict";
 
+import {send as slackSend} from '../../config/slack';
 const _ = require('lodash');
 
 /**
@@ -81,6 +82,8 @@ module.exports = {
                 else
                     sails.log.debug('response:', resp);
             });
+            //TODO: temp
+            slackSend(values);
         }
         next();
     }
