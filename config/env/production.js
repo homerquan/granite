@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-  port: 80,
+  port: 8801,
   seeds: {
   	disable: true
   },
