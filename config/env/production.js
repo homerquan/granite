@@ -7,13 +7,19 @@
 
 module.exports = {
   port: 8801,
+  disableAuth: true,
   seeds: {
-  	disable: true
+    disable: true
+  },
+  grpc: {
+    server: '0.0.0.0:8901',
+    client: ''
   },
   log: {
-    level: 'info'
+    level: 'verbose'
   },
   models: {
     connection: ['mongo']
-  }
+  },
+  amqpConn:  'amqp://guest:guest@localhost:5672/seneca'
 };
