@@ -29,6 +29,8 @@ docker run --name mongo -p 27017:27017 -d mongo
 docker run --name redis -e ALLOW_EMPTY_PASSWORD=yes -p 6379:6379 -d bitnami/redis:latest
 ```
 
+* Rabbitmq management login: guest/guest
+
 ## Docker
 
 ```shell
