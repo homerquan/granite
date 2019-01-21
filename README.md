@@ -39,5 +39,5 @@ docker run -d -p 3000:3000 -t convospot-api
 ```
 
 ## Reference
-
+* Seneca sample: https://github.com/rjrodger/seneca-examples
 * https://github.com/ghaiklor/generator-sails-rest-api
